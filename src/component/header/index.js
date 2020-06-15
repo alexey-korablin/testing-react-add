@@ -5,12 +5,11 @@ import Logo from '../../assets/logo.png';
 
 const Header = () => {
   return (
-    <header>
+    <header data-testid='headerComponent'>
       <div className='wrap'>
         <div className='logo'>
-          <img src={Logo} alt='Logo' />
+          <img data-testid='logoIMG' src={Logo} alt='Logo' />
         </div>
-        {/* Header */}
       </div>
     </header>
   );
