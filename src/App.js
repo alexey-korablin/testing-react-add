@@ -4,6 +4,16 @@ import './app.scss';
 import Header from './component/header';
 import Headline from './component/headline';
 
+const tempProps = [
+  {
+    fName: 'Joe',
+    lName: 'Doe',
+    email: 'joe_doe@example.com',
+    age: 24,
+    onlineStatus: true,
+  },
+];
+
 function App() {
   return (
     <div>
@@ -12,6 +22,7 @@ function App() {
         <Headline
           header='Posts'
           description='Click the button to render posts!'
+          tempProps={tempProps}
         ></Headline>
       </section>
     </div>
