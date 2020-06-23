@@ -4,10 +4,15 @@ import PropTypes from 'prop-types';
 class ListItem extends Component {
   render() {
     const { title, description } = this.props;
+
+    if (!title) {
+      return null;
+    }
+
     return (
       <div data-testid='listItemComponent'>
         <h2 data-testid='componentTitle'>{title}</h2>
-        <p>{description}</p>
+        <p data-testid='componentDescription'>{description}</p>
       </div>
     );
   }

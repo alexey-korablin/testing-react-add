@@ -36,5 +36,29 @@ describe('ListItem component', () => {
       const title = findByTestAttr(component, 'componentTitle');
       expect(title.length).toBe(1);
     });
+
+    it('should render a description', () => {
+      const description = findByTestAttr(
+        component,
+        'componentDescription',
+      );
+      expect(description.length).toBe(1);
+    });
+  });
+
+  describe('should not render', () => {
+    let component;
+    beforeEach(() => {
+      const props = {
+        title: '',
+        description: 'test description',
+      };
+      component = setUp(props);
+    });
+
+    it('component is not rendered', () => {
+      const listItem = findByTestAttr(component, 'listItemComponent');
+      expect(listItem.length).toBe(0);
+    });
   });
 });
