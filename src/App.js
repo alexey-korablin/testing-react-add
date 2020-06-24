@@ -35,7 +35,7 @@ class App extends Component {
     };
     const { posts } = this.props;
     return (
-      <div>
+      <div className='app' data-testid='appComponent'>
         <Header></Header>
         <section className='main'>
           <Headline
