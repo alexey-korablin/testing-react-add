@@ -1,12 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { findByTestAttr, checkProps, testStore } from '../utils';
+import { findByTestAttr, testStore } from '../utils';
 import App from './App';
 
 const setUp = (initialState = {}) => {
   const store = testStore(initialState);
-  const wrapper = shallow(<App store={store} />);
+  // Wthout .childAt(0).dive() just will be returned HOC as here:
+  // <ContextProvider value={{...}}>
+  // <App store={{...}} posts={{...}} fetchPosts={[Function]} />
+  // </ContextProvider>
+  const wrapper = shallow(<App store={store} />)
+    .childAt(0)
+    .dive();
   return wrapper;
 };
 
@@ -14,20 +20,22 @@ describe('App component', () => {
   let component;
 
   beforeEach(() => {
-    const initialState = [
-      {
-        title: 'Example title',
-        body: 'Some text',
-      },
-      {
-        title: 'Example title',
-        body: 'Some text',
-      },
-      {
-        title: 'Example title',
-        body: 'Some text',
-      },
-    ];
+    const initialState = {
+      posts: [
+        {
+          title: 'Example title',
+          body: 'Some text',
+        },
+        {
+          title: 'Example title',
+          body: 'Some text',
+        },
+        {
+          title: 'Example title',
+          body: 'Some text',
+        },
+      ],
+    };
 
     component = setUp(initialState);
   });
