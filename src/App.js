@@ -21,14 +21,30 @@ const tempProps = [
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      hideBtn: false,
+    };
     this.fetchData = this.fetchData.bind(this);
   }
 
   fetchData() {
     this.props.fetchPosts();
+    this.exmplMethod_updState();
+  }
+
+  exmplMethod_updState() {
+    const { hideBtn } = this.state;
+    this.setState({
+      hideBtn: !hideBtn,
+    });
+  }
+
+  exmplMethod_returnValue(n) {
+    return n + 1;
   }
 
   render() {
+    const { hideBtn } = this.state;
     const configButton = {
       buttonText: 'Get posts',
       emitEvent: this.fetchData,
@@ -43,7 +59,7 @@ class App extends Component {
             description='Click the button to render posts!'
             tempProps={tempProps}
           ></Headline>
-          <SharedButton {...configButton} />
+          {!hideBtn && <SharedButton {...configButton} />}
           {posts.length > 0 &&
             posts.map((post, index) => {
               const { title, body } = post;
